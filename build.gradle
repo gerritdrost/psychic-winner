@@ -1,0 +1,29 @@
+import com.diffplug.gradle.spotless.JavaExtension
+
+plugins {
+    id 'java'
+    id 'com.diffplug.spotless' version '6.9.1'
+}
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(11) }
+}
+
+repositories { mavenCentral() }
+
+sourceSets.main.java.srcDirs = ['samples']
+
+spotless {
+    format 'sample1', JavaExtension.class, {
+        target 'samples/Sample1.java'
+        palantirJavaFormat('2.26.0')
+    }
+    format 'sample2', JavaExtension.class, {
+        target 'samples/Sample2.java'
+        palantirJavaFormat('2.26.0')
+    }
+    format 'sample3', JavaExtension.class, {
+        target 'samples/Sample3.java'
+        palantirJavaFormat('2.26.0')
+    }
+}
